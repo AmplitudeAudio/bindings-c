@@ -1,4 +1,4 @@
-// Copyright (c) 2023-present Sparky Studios. All rights reserved.
+// Copyright (c) 2025-present Sparky Studios. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -40,9 +40,11 @@ typedef char am_oschar;
 typedef char am_oschar;
 #elif AM_PLATFORM_APPLE
 typedef char am_oschar;
+#else
+typedef char am_oschar;
 #endif
 
-typedef size_t am_size;
+typedef unsigned long am_size;
 typedef signed char am_int8;
 typedef unsigned char am_uint8;
 typedef signed short am_int16;

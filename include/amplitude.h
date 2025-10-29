@@ -15,8 +15,10 @@
 #ifndef _AM_C_H
 #define _AM_C_H
 
-#include <amplitude_common.h>
+#include "amplitude_common.h"
 
-#include <amplitude_memory.h>
+#include "amplitude_filesystem.h"
+#include "amplitude_memory.h"
+#include "amplitude_thread.h"
 
 #endif // _AM_C_H

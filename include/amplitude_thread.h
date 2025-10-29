@@ -1,4 +1,4 @@
-// Copyright (c) 2023-present Sparky Studios. All rights reserved.
+// Copyright (c) 2025-present Sparky Studios. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,7 +17,6 @@
 
 #include "amplitude_common.h"
 
-typedef am_voidptr am_mutex_handle;
 typedef am_voidptr am_thread_handle;
 typedef am_uint64 am_thread_id;
 typedef void (*am_thread_proc)(am_voidptr param);
@@ -39,39 +38,6 @@ typedef am_thread_pool* am_thread_pool_handle;
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-/**
- * @brief Creates a mutex object.
- *
- * A mutex is an object that a thread can acquire, preventing other
- * threads from acquiring it.
- *
- * To acquire the mutex ownership, you should use @c am_thread_mutex_lock() with
- * the mutex handle as parameter. To release the ownership, use @c am_thread_mutex_unlock()
- * with the mutex handle as parameter.
- */
-__api am_mutex_handle am_thread_mutex_create(am_uint64 spin_count);
-
-/**
- * @brief Destroys a mutex object.
- *
- * @param[in] handle The mutex object handle.
- */
-__api void am_thread_mutex_destroy(am_mutex_handle handle);
-
-/**
- * @brief Takes ownership of a mutex.
- *
- * @param[in] handle The mutex object handle.
- */
-__api void am_thread_mutex_lock(am_mutex_handle handle);
-
-/**
- * @brief Releases ownership of a mutex.
- *
- * @param[in] handle The mutex object handle.
- */
-__api void am_thread_mutex_unlock(am_mutex_handle handle);
 
 /**
  * @brief Creates a new thread.

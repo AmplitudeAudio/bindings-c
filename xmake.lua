@@ -32,4 +32,6 @@ target("amplitude_c")
   add_includedirs("include")
   add_packages("amplitudeaudiosdk")
   add_defines("AM_BUILDSYSTEM_BUILDING_AMPLITUDE")
+
+  add_headerfiles("include/**.h")
 target_end()

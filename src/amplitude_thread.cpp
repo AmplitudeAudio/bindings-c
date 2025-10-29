@@ -1,4 +1,4 @@
-// Copyright (c) 2023-present Sparky Studios. All rights reserved.
+// Copyright (c) 2025-present Sparky Studios. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -82,26 +82,6 @@ static std::map<CPoolTask*, std::shared_ptr<CPoolTask>> g_pool_tasks = {};
 static std::map<CAwaitablePoolTask*, std::shared_ptr<CAwaitablePoolTask>> g_awaitable_pool_tasks = {};
 
 extern "C" {
-am_mutex_handle am_thread_mutex_create(am_uint64 spin_count)
-{
-    return reinterpret_cast<am_mutex_handle>(Thread::CreateMutex(spin_count));
-}
-
-void am_thread_mutex_destroy(am_mutex_handle handle)
-{
-    Thread::DestroyMutex(handle);
-}
-
-void am_thread_mutex_lock(am_mutex_handle handle)
-{
-    Thread::LockMutex(handle);
-}
-
-void am_thread_mutex_unlock(am_mutex_handle handle)
-{
-    Thread::UnlockMutex(handle);
-}
-
 am_thread_handle am_thread_create(am_thread_proc func, am_voidptr param)
 {
     return reinterpret_cast<am_thread_handle>(Thread::CreateThread(func, param));

@@ -17,6 +17,7 @@
 
 #include "amplitude_common.h"
 
+#include "amplitude_file.h"
 #include "amplitude_filesystem.h"
 #include "amplitude_memory.h"
 #include "amplitude_thread.h"

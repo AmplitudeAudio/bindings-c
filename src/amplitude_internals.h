@@ -39,11 +39,12 @@ inline void am_free_string(const char* str)
     amfree(const_cast<char*>(str));
 }
 
-inline const am_oschar* am_allocate_osstring(const am_oschar* str)
+inline const am_oschar* am_allocate_osstring(const AmOsString& str)
 {
-    const size_t len = AmOsString(str).size() + 1;
+    const size_t len = str.size() + 1;
     auto* result = static_cast<am_oschar*>(ammalloc(len));
-    std::memcpy(result, str, len);
+    std::memcpy(result, str.c_str(), len);
+    result[len - 1] = '\0';
     return result;
 }
 

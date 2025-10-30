@@ -78,8 +78,11 @@ private:
     bool _is_ready = false;
 };
 
-static std::map<CPoolTask*, std::shared_ptr<CPoolTask>> g_pool_tasks = {};
-static std::map<CAwaitablePoolTask*, std::shared_ptr<CAwaitablePoolTask>> g_awaitable_pool_tasks = {};
+static std::mutex g_pool_mutex;
+static std::unordered_map<CPoolTask*, std::shared_ptr<CPoolTask>> g_pool_tasks = {};
+
+static std::mutex g_awaitable_pool_mutex;
+static std::unordered_map<CAwaitablePoolTask*, std::shared_ptr<CAwaitablePoolTask>> g_awaitable_pool_tasks = {};
 
 extern "C" {
 am_thread_handle am_thread_create(am_thread_proc func, am_voidptr param)
@@ -109,6 +112,8 @@ am_thread_id am_thread_get_id()
 
 am_thread_pool_task_handle am_thread_pool_task_create(am_thread_pool_task_proc func, am_voidptr param)
 {
+    std::lock_guard lock(g_pool_mutex);
+
     auto task = AmSharedPtr<CPoolTask>::Make(func, param);
     g_pool_tasks.emplace(task.get(), task);
 
@@ -117,6 +122,8 @@ am_thread_pool_task_handle am_thread_pool_task_create(am_thread_pool_task_proc f
 
 am_thread_pool_task_awaitable_handle am_thread_pool_task_awaitable_create(am_thread_pool_task_awaitable_proc func, am_voidptr param)
 {
+    std::lock_guard lock(g_awaitable_pool_mutex);
+
     auto task = AmSharedPtr<CAwaitablePoolTask>::Make(func, param);
     g_awaitable_pool_tasks.emplace(task.get(), task);
 
@@ -125,12 +132,16 @@ am_thread_pool_task_awaitable_handle am_thread_pool_task_awaitable_create(am_thr
 
 void am_thread_pool_task_destroy(am_thread_pool_task_handle task)
 {
+    std::lock_guard lock(g_pool_mutex);
+
     auto* t = reinterpret_cast<CPoolTask*>(task);
     g_pool_tasks.erase(t);
 }
 
 void am_thread_pool_task_awaitable_destroy(am_thread_pool_task_awaitable_handle task)
 {
+    std::lock_guard lock(g_awaitable_pool_mutex);
+
     auto* t = reinterpret_cast<CAwaitablePoolTask*>(task);
     g_awaitable_pool_tasks.erase(t);
 }
@@ -180,6 +191,8 @@ void am_thread_pool_destroy(am_thread_pool_handle pool)
 
 void am_thread_pool_add_task(am_thread_pool_handle pool, am_thread_pool_task_handle task)
 {
+    std::lock_guard lock(g_pool_mutex);
+
     auto* t = reinterpret_cast<CPoolTask*>(task);
     if (!g_pool_tasks.contains(t))
         return;
@@ -189,6 +202,8 @@ void am_thread_pool_add_task(am_thread_pool_handle pool, am_thread_pool_task_han
 
 void am_thread_pool_add_task_awaitable(am_thread_pool_handle pool, am_thread_pool_task_awaitable_handle task)
 {
+    std::lock_guard lock(g_awaitable_pool_mutex);
+
     auto* t = reinterpret_cast<CAwaitablePoolTask*>(task);
     if (!g_awaitable_pool_tasks.contains(t))
         return;
@@ -201,12 +216,12 @@ am_uint32 am_thread_pool_get_thread_count(am_thread_pool_handle pool)
     return reinterpret_cast<Thread::Pool*>(pool)->GetThreadCount();
 }
 
-am_uint32 am_thread_pool_is_running(am_thread_pool_handle pool)
+am_bool am_thread_pool_is_running(am_thread_pool_handle pool)
 {
     return reinterpret_cast<Thread::Pool*>(pool)->IsRunning();
 }
 
-am_uint32 am_thread_pool_has_tasks(am_thread_pool_handle pool)
+am_bool am_thread_pool_has_tasks(am_thread_pool_handle pool)
 {
     return reinterpret_cast<Thread::Pool*>(pool)->HasTasks();
 }

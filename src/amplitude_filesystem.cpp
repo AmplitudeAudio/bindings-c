@@ -18,7 +18,6 @@
 #include <amplitude_filesystem.h>
 
 #include "amplitude_internals.h"
-#include "SparkyStudios/Audio/Amplitude/IO/File.h"
 
 class CFile final : public SparkyStudios::Audio::Amplitude::File
 {
@@ -208,7 +207,8 @@ private:
     am_voidptr _user_data;
 };
 
-static std::map<File*, std::shared_ptr<File>> g_files = {};
+static std::mutex g_files_mutex;
+static std::unordered_map<File*, std::shared_ptr<File>> g_files = {};
 
 #ifdef __cplusplus
 extern "C" {
@@ -356,7 +356,12 @@ am_bool am_file_is_valid(am_file_handle handle)
 
 void am_file_close(am_file_handle file)
 {
-    static_cast<File*>(file.handle)->Close();
+    std::lock_guard lock(g_files_mutex);
+
+    auto* ptr = static_cast<File*>(file.handle);
+    g_files.erase(ptr);
+
+    ptr->Close();
 }
 
 am_filesystem_config am_filesystem_config_init_custom()
@@ -471,6 +476,8 @@ const am_oschar* am_filesystem_join(am_filesystem_handle filesystem, const am_os
 
 am_file_handle am_filesystem_open_file(am_filesystem_handle filesystem, const am_oschar* path, am_file_open_mode mode)
 {
+    std::lock_guard lock(g_files_mutex);
+
     const auto file = static_cast<FileSystem*>(filesystem.handle)->OpenFile(path, static_cast<eFileOpenMode>(mode));
     g_files.emplace(file.get(), file);
 

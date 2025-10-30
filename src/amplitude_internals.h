@@ -18,6 +18,7 @@
 #define _AM_IMPLEMENTATION_INTERNALS_H
 
 #include <SparkyStudios/Audio/Amplitude/Amplitude.h>
+
 #include <amplitude_common.h>
 
 #define BOOL_TO_AM_BOOL(x) ((x) ? AM_TRUE : AM_FALSE)
@@ -27,10 +28,11 @@ using namespace SparkyStudios::Audio::Amplitude;
 
 inline const char* am_allocate_string(const AmString& str)
 {
-    const size_t len = str.size() + 1;
+    const size_t count = str.size();
+    const size_t len = sizeof(char) * (count + 1);
     auto* result = static_cast<char*>(ammalloc(len));
     std::memcpy(result, str.c_str(), len);
-    result[len - 1] = '\0';
+    result[count] = '\0';
     return result;
 }
 
@@ -41,10 +43,11 @@ inline void am_free_string(const char* str)
 
 inline const am_oschar* am_allocate_osstring(const AmOsString& str)
 {
-    const size_t len = str.size() + 1;
+    const size_t count = str.size();
+    const size_t len = sizeof(am_oschar) * (count + 1);
     auto* result = static_cast<am_oschar*>(ammalloc(len));
     std::memcpy(result, str.c_str(), len);
-    result[len - 1] = '\0';
+    result[count] = '\0';
     return result;
 }
 

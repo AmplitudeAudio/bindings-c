@@ -97,99 +97,99 @@ extern "C" {
 /**
  * @brief Initialize a custom filesystem configuration.
  */
-am_filesystem_config am_filesystem_config_init_custom();
+__api am_filesystem_config am_filesystem_config_init_custom();
 
 /**
  * @brief Initialize a disk filesystem configuration.
  */
-am_filesystem_config am_filesystem_config_init_disk();
+__api am_filesystem_config am_filesystem_config_init_disk();
 
 /**
  * @brief Initialize a package filesystem configuration.
  */
-am_filesystem_config am_filesystem_config_init_package();
+__api am_filesystem_config am_filesystem_config_init_package();
 
 #if AM_PLATFORM_ANDROID
 /**
  * @brief Initialize an Android filesystem configuration.
  */
-am_filesystem_config am_filesystem_config_init_android();
+__api am_filesystem_config am_filesystem_config_init_android();
 #elif AM_PLATFORM_IOS
 /**
  * @brief Initialize an iOS filesystem configuration.
  */
-am_filesystem_config am_filesystem_config_init_ios();
+__api am_filesystem_config am_filesystem_config_init_ios();
 #endif
 
 /**
  * @brief Create a filesystem.
  */
-am_filesystem_handle am_filesystem_create(const am_filesystem_config* config);
+__api am_filesystem_handle am_filesystem_create(const am_filesystem_config* config);
 
 /**
  * @brief Destroy a filesystem.
  */
-void am_filesystem_destroy(am_filesystem_handle filesystem);
+__api void am_filesystem_destroy(am_filesystem_handle filesystem);
 
 /**
  * @brief Set the base path for a filesystem.
  */
-void am_filesystem_set_base_path(am_filesystem_handle filesystem, const am_oschar* base_path);
+__api void am_filesystem_set_base_path(am_filesystem_handle filesystem, const am_oschar* base_path);
 
 /**
  * @brief Get the base path for a filesystem.
  */
-const am_oschar* am_filesystem_get_base_path(am_filesystem_handle filesystem);
+__api const am_oschar* am_filesystem_get_base_path(am_filesystem_handle filesystem);
 
 /**
  * @brief Resolve a path relative to a filesystem.
  */
-const am_oschar* am_filesystem_resolve_path(am_filesystem_handle filesystem, const am_oschar* path);
+__api const am_oschar* am_filesystem_resolve_path(am_filesystem_handle filesystem, const am_oschar* path);
 
 /**
  * @brief Check if a path exists within a filesystem.
  */
-am_bool am_filesystem_exists(am_filesystem_handle filesystem, const am_oschar* path);
+__api am_bool am_filesystem_exists(am_filesystem_handle filesystem, const am_oschar* path);
 
 /**
  * @brief Check if a path is a directory within a filesystem.
  */
-am_bool am_filesystem_is_directory(am_filesystem_handle filesystem, const am_oschar* path);
+__api am_bool am_filesystem_is_directory(am_filesystem_handle filesystem, const am_oschar* path);
 
 /**
  * @brief Join multiple path components within a filesystem.
  */
-const am_oschar* am_filesystem_join(am_filesystem_handle filesystem, const am_oschar** parts, am_size count);
+__api const am_oschar* am_filesystem_join(am_filesystem_handle filesystem, const am_oschar** parts, am_size count);
 
 /**
  * @brief Open a file within a filesystem handle.
  */
-am_file_handle am_filesystem_open_file(am_filesystem_handle filesystem, const am_oschar* path, am_file_open_mode mode);
+__api am_file_handle am_filesystem_open_file(am_filesystem_handle filesystem, const am_oschar* path, am_file_open_mode mode);
 
 /**
  * @brief Start opening a file within a filesystem handle.
  */
-void am_filesystem_start_open(am_filesystem_handle filesystem);
+__api void am_filesystem_start_open(am_filesystem_handle filesystem);
 
 /**
  * @brief Try to finalize the opening of a file within a filesystem handle.
  */
-am_bool am_filesystem_try_finalize_open(am_filesystem_handle filesystem);
+__api am_bool am_filesystem_try_finalize_open(am_filesystem_handle filesystem);
 
 /**
  * @brief Start closing a file within a filesystem handle.
  */
-void am_filesystem_start_close(am_filesystem_handle filesystem);
+__api void am_filesystem_start_close(am_filesystem_handle filesystem);
 
 /**
  * @brief Try to finalize the closing of a file within a filesystem handle.
  */
-am_bool am_filesystem_try_finalize_close(am_filesystem_handle filesystem);
+__api am_bool am_filesystem_try_finalize_close(am_filesystem_handle filesystem);
 
 /**
  * @brief Sets the platform filesystem within a package.
  */
-void am_filesystem_package_set_filesystem(am_filesystem_handle filesystem, am_filesystem_config* internal);
+__api void am_filesystem_package_set_filesystem(am_filesystem_handle filesystem, am_filesystem_config* internal);
 
 #ifdef __cplusplus
 } // extern "C"

@@ -184,127 +184,152 @@ extern "C" {
 /**
  * @brief Initialize a custom file system configuration.
  */
-__api am_file_config am_file_config_init_custom();
+__api am_file_config
+am_file_config_init_custom();
 
 /**
  * @brief Initialize a disk file system configuration.
  */
-__api am_file_config am_file_config_init_disk();
+__api am_file_config
+am_file_config_init_disk();
 
 /**
  * @brief Initialize a memory file system configuration.
  */
-__api am_file_config am_file_config_init_memory();
+__api am_file_config
+am_file_config_init_memory();
 
 /**
  * @brief Create a new file handle with the given configuration.
  */
-__api am_file_handle am_file_create(const am_file_config* config);
+__api am_file_handle
+am_file_create(const am_file_config* config);
 
 /**
  * @brief Destroy a file handle.
  */
-__api void am_file_destroy(am_file_handle file);
+__api void
+am_file_destroy(am_file_handle file);
 
 /**
  * @brief Get the path of a file, from within its filesystem.
  */
-__api const am_oschar* am_file_get_path(am_file_handle file);
+__api const am_oschar*
+am_file_get_path(am_file_handle file);
 
 /**
  * @brief Read an 8-bit unsigned integer from the file.
  */
-__api am_uint8 am_file_read8(am_file_handle file);
+__api am_uint8
+am_file_read8(am_file_handle file);
 
 /**
  * @brief Read a 16-bit unsigned integer from the file.
  */
-__api am_uint16 am_file_read16(am_file_handle file);
+__api am_uint16
+am_file_read16(am_file_handle file);
 
 /**
  * @brief Read a 32-bit unsigned integer from the file.
  */
-__api am_uint32 am_file_read32(am_file_handle file);
+__api am_uint32
+am_file_read32(am_file_handle file);
 
 /**
  * @brief Read a 64-bit unsigned integer from the file.
  */
-__api am_uint64 am_file_read64(am_file_handle file);
+__api am_uint64
+am_file_read64(am_file_handle file);
 
 /**
  * @brief Read a string from the file.
  */
-__api const char* am_file_read_string(am_file_handle file);
+__api const char*
+am_file_read_string(am_file_handle file);
 
 /**
  * @brief Write an 8-bit unsigned integer to the file.
  */
-__api am_size am_file_write8(am_file_handle file, am_uint8 value);
+__api am_size
+am_file_write8(am_file_handle file, am_uint8 value);
 
 /**
  * @brief Write a 16-bit unsigned integer to the file.
  */
-__api am_size am_file_write16(am_file_handle file, am_uint16 value);
+__api am_size
+am_file_write16(am_file_handle file, am_uint16 value);
 
 /**
  * @brief Write a 32-bit unsigned integer to the file.
  */
-__api am_size am_file_write32(am_file_handle file, am_uint32 value);
+__api am_size
+am_file_write32(am_file_handle file, am_uint32 value);
 
 /**
  * @brief Write a 64-bit unsigned integer to the file.
  */
-__api am_size am_file_write64(am_file_handle file, am_uint64 value);
+__api am_size
+am_file_write64(am_file_handle file, am_uint64 value);
 
 /**
  * @brief Write a string to the file.
  */
-__api am_size am_file_write_string(am_file_handle file, const char* string);
+__api am_size
+am_file_write_string(am_file_handle file, const char* string);
 
 /**
  * @brief Check if a file handle is at the end of the file.
  */
-__api am_bool am_file_eof(am_file_handle file);
+__api am_bool
+am_file_eof(am_file_handle file);
 
 /**
  * @brief Read a specified number of bytes from a file handle into a buffer.
  */
-__api am_size am_file_read(am_file_handle file, am_uint8* buffer, am_size bytes);
+__api am_size
+am_file_read(am_file_handle file, am_uint8* buffer, am_size bytes);
 
 /**
  * @brief Write a specified number of bytes from a buffer to a file handle.
  */
-__api am_size am_file_write(am_file_handle file, const am_uint8* buffer, am_size bytes);
+__api am_size
+am_file_write(am_file_handle file, const am_uint8* buffer, am_size bytes);
 
 /**
  * @brief Get the length of a file handle.
  */
-__api am_size am_file_length(am_file_handle file);
+__api am_size
+am_file_length(am_file_handle file);
 
 /**
  * @brief Seek to a specified position in a file handle.
  */
-__api void am_file_seek(am_file_handle file, am_size offset, am_file_seek_origin origin);
+__api void
+am_file_seek(am_file_handle file, am_size offset, am_file_seek_origin origin);
 
 /**
  * @brief Get the current position in a file handle.
  */
-__api am_size am_file_position(am_file_handle file);
+__api am_size
+am_file_position(am_file_handle file);
 
 /**
  * @brief Get the internal file pointer.
  */
-__api am_voidptr am_file_get_ptr(am_file_handle file);
+__api am_voidptr
+am_file_get_ptr(am_file_handle file);
 
 /**
  * @brief Check if a file handle is valid.
  */
-__api am_bool am_file_is_valid(am_file_handle file);
+__api am_bool
+am_file_is_valid(am_file_handle file);
 
 /**
  * @brief Close a file handle.
  */
-__api void am_file_close(am_file_handle file);
+__api void
+am_file_close(am_file_handle file);
 
 #ifdef __cplusplus
 } // extern "C"

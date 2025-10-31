@@ -17,10 +17,17 @@
 
 #include "amplitude_common.h"
 
+#include "amplitude_boot.h"
 #include "amplitude_bus.h"
+#include "amplitude_channel.h"
+#include "amplitude_codec.h"
+#include "amplitude_entity.h"
+#include "amplitude_environment.h"
 #include "amplitude_file.h"
 #include "amplitude_filesystem.h"
+#include "amplitude_listener.h"
 #include "amplitude_memory.h"
+#include "amplitude_room.h"
 #include "amplitude_thread.h"
 
 #endif // _AM_C_H

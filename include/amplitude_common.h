@@ -16,11 +16,11 @@
 #define _AM_C_COMMON_H
 
 #if AM_COMPILER_MSVC
-#define __export         __declspec(dllexport)
-#define __import         __declspec(dllimport)
+#define __export __declspec(dllexport)
+#define __import __declspec(dllimport)
 #elif AM_COMPILER_GCC && ((__GNUC__ >= 4) || (__GNUC__ == 3 && __GNUC_MINOR__ >= 3))
-#define __export         __attribute__((visibility("default")))
-#define __import         __attribute__((visibility("default")))
+#define __export __attribute__((visibility("default")))
+#define __import __attribute__((visibility("default")))
 #else
 #define __export
 #define __import
@@ -78,9 +78,65 @@ typedef am_uint32 am_bool;
 #define AM_TRUE 1
 #define AM_FALSE 0
 
-typedef union { am_float32 data[2]; struct { am_float32 x, y; }; } am_vec2;
-typedef union { am_float32 data[3]; struct { am_float32 x, y, z; }; } am_vec3;
-typedef union { am_float32 data[4]; struct { am_float32 x, y, z, w; }; } am_vec4;
+typedef union {
+    am_float32 data[2];
+    struct
+    {
+        am_float32 x, y;
+    };
+} am_vec2;
+
+typedef union {
+    am_float32 data[3];
+    struct
+    {
+        am_float32 x, y, z;
+    };
+} am_vec3;
+
+typedef union {
+    am_float32 data[4];
+    struct
+    {
+        am_float32 x, y, z, w;
+    };
+} am_vec4;
+
+typedef union {
+    am_float32 data[4];
+    struct
+    {
+        am_float32 w, x, y, z;
+    };
+} am_quaternion;
+
+/**
+ * @brief Represents a 4x4 matrix.
+ */
+typedef union {
+    am_float32 data[16];
+    am_vec4 rows[4];
+
+    struct
+    {
+        am_float32 m00;
+        am_float32 m01;
+        am_float32 m02;
+        am_float32 m03;
+        am_float32 m10;
+        am_float32 m11;
+        am_float32 m12;
+        am_float32 m13;
+        am_float32 m20;
+        am_float32 m21;
+        am_float32 m22;
+        am_float32 m23;
+        am_float32 m30;
+        am_float32 m31;
+        am_float32 m32;
+        am_float32 m33;
+    };
+} am_mat4;
 
 #ifdef __cplusplus
 extern "C" {
@@ -91,7 +147,16 @@ extern "C" {
  *
  * @param str The string to be freed.
  */
-__api void am_free_string(const char* str);
+__api void
+am_free_string(const char* str);
+
+/**
+ * @brief Free allocated memory for an OS string.
+ *
+ * @param str The OS string to be freed.
+ */
+__api void
+am_free_osstring(const am_oschar* str);
 
 #ifdef __cplusplus
 }

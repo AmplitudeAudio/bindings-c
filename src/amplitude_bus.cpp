@@ -19,57 +19,49 @@
 #include "amplitude_internals.h"
 
 extern "C" {
-am_bool am_bus_is_valid(am_bus_handle bus)
-{
-    const Bus b(reinterpret_cast<BusInternalState*>(bus));
-    return BOOL_TO_AM_BOOL(b.Valid());
+am_bool am_bus_is_valid(am_bus_handle bus) {
+  const Bus b(reinterpret_cast<BusInternalState *>(bus));
+  return BOOL_TO_AM_BOOL(b.Valid());
 }
 
-am_bus_id am_bus_get_id(am_bus_handle bus)
-{
-    const Bus b(reinterpret_cast<BusInternalState*>(bus));
-    return b.GetId();
+am_bus_id am_bus_get_id(am_bus_handle bus) {
+  const Bus b(reinterpret_cast<BusInternalState *>(bus));
+  return b.GetId();
 }
 
-const char* am_bus_get_name(am_bus_handle bus)
-{
-    const Bus b(reinterpret_cast<BusInternalState*>(bus));
-    return am_allocate_string(b.GetName());
+const char *am_bus_get_name(am_bus_handle bus) {
+  const Bus b(reinterpret_cast<BusInternalState *>(bus));
+  return am_allocate_string(b.GetName());
 }
 
-void am_bus_set_gain(am_bus_handle bus, am_float32 gain)
-{
-    const Bus b(reinterpret_cast<BusInternalState*>(bus));
-    b.SetGain(gain);
+void am_bus_set_gain(am_bus_handle bus, am_float32 gain) {
+  const Bus b(reinterpret_cast<BusInternalState *>(bus));
+  b.SetGain(gain);
 }
 
-am_float32 am_bus_get_gain(am_bus_handle bus)
-{
-    const Bus b(reinterpret_cast<BusInternalState*>(bus));
-    return b.GetGain();
+am_float32 am_bus_get_gain(am_bus_handle bus) {
+  const Bus b(reinterpret_cast<BusInternalState *>(bus));
+  return b.GetGain();
 }
 
-void am_bus_fade_to(am_bus_handle bus, am_float32 target_gain, am_time duration)
-{
-    const Bus b(reinterpret_cast<BusInternalState*>(bus));
-    b.FadeTo(target_gain, duration);
+void am_bus_fade_to(am_bus_handle bus, am_float32 target_gain,
+                    am_time duration) {
+  const Bus b(reinterpret_cast<BusInternalState *>(bus));
+  b.FadeTo(target_gain, duration);
 }
 
-am_float32 am_bus_get_final_gain(am_bus_handle bus)
-{
-    const Bus b(reinterpret_cast<BusInternalState*>(bus));
-    return b.GetFinalGain();
+am_float32 am_bus_get_final_gain(am_bus_handle bus) {
+  const Bus b(reinterpret_cast<BusInternalState *>(bus));
+  return b.GetFinalGain();
 }
 
-void am_bus_set_mute(am_bus_handle bus, am_bool mute)
-{
-    const Bus b(reinterpret_cast<BusInternalState*>(bus));
-    b.SetMute(mute);
+void am_bus_set_mute(am_bus_handle bus, am_bool mute) {
+  const Bus b(reinterpret_cast<BusInternalState *>(bus));
+  b.SetMute(mute);
 }
 
-am_bool am_bus_is_muted(am_bus_handle bus)
-{
-    const Bus b(reinterpret_cast<BusInternalState*>(bus));
-    return b.IsMuted();
+am_bool am_bus_is_muted(am_bus_handle bus) {
+  const Bus b(reinterpret_cast<BusInternalState *>(bus));
+  return b.IsMuted();
 }
 }

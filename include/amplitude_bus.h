@@ -47,7 +47,8 @@ extern "C" {
  *
  * @return `AM_TRUE` if the bus is valid, `AM_FALSE` otherwise.
  */
-__api am_bool am_bus_is_valid(am_bus_handle bus);
+__api am_bool
+am_bus_is_valid(am_bus_handle bus);
 
 /**
  * @brief Gets the unique ID of the given bus.
@@ -56,7 +57,8 @@ __api am_bool am_bus_is_valid(am_bus_handle bus);
  *
  * @return The Bus unique ID.
  */
-__api am_bus_id am_bus_get_id(am_bus_handle bus);
+__api am_bus_id
+am_bus_get_id(am_bus_handle bus);
 
 /**
  * @brief Gets the name of the given bus.
@@ -65,7 +67,8 @@ __api am_bus_id am_bus_get_id(am_bus_handle bus);
  *
  * @return The bus name.
  */
-__api const char* am_bus_get_name(am_bus_handle bus);
+__api const char*
+am_bus_get_name(am_bus_handle bus);
 
 /**
  * @brief Sets the gain of the given bus.
@@ -73,7 +76,8 @@ __api const char* am_bus_get_name(am_bus_handle bus);
  * @param[in] bus The bus.
  * @param[in] gain The new gain value.
  */
-__api void am_bus_set_gain(am_bus_handle bus, am_float32 gain);
+__api void
+am_bus_set_gain(am_bus_handle bus, am_float32 gain);
 
 /**
  * @brief Returns the user specified gain on the given bus.
@@ -82,7 +86,8 @@ __api void am_bus_set_gain(am_bus_handle bus, am_float32 gain);
  *
  * @return The user specified gain.
  */
-__api am_float32 am_bus_get_gain(am_bus_handle bus);
+__api am_float32
+am_bus_get_gain(am_bus_handle bus);
 
 /**
  * @brief Fades to `gain` over `duration` seconds.
@@ -91,7 +96,8 @@ __api am_float32 am_bus_get_gain(am_bus_handle bus);
  * @param[in] target_gain The gain value to fade to.
  * @param[in] duration The amount of time in seconds to take to reach the desired gain.
  */
-__api void am_bus_fade_to(am_bus_handle bus, am_float32 target_gain, am_time duration);
+__api void
+am_bus_fade_to(am_bus_handle bus, am_float32 target_gain, am_time duration);
 
 /**
  * @brief Returns the final calculated gain of the given bus.
@@ -104,7 +110,8 @@ __api void am_bus_fade_to(am_bus_handle bus, am_float32 target_gain, am_time dur
  *
  * @return The final calculated gain.
  */
-__api am_float32 am_bus_get_final_gain(am_bus_handle bus);
+__api am_float32
+am_bus_get_final_gain(am_bus_handle bus);
 
 /**
  * @brief Sets the muted state of the given bus.
@@ -112,7 +119,8 @@ __api am_float32 am_bus_get_final_gain(am_bus_handle bus);
  * @param[in] bus The bus to mute/unmute.
  * @param[in] mute The muted state.
  */
-__api void am_bus_set_mute(am_bus_handle bus, am_bool mute);
+__api void
+am_bus_set_mute(am_bus_handle bus, am_bool mute);
 
 /**
  * @brief Returns whether the given bus is muted.
@@ -121,7 +129,8 @@ __api void am_bus_set_mute(am_bus_handle bus, am_bool mute);
  *
  * @return @c true if the bus is muted, @c false otherwise.
  */
-__api am_bool am_bus_is_muted(am_bus_handle bus);
+__api am_bool
+am_bus_is_muted(am_bus_handle bus);
 
 #ifdef __cplusplus
 }

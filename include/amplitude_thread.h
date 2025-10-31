@@ -45,33 +45,38 @@ extern "C" {
  * @param[in] func The function to run in the thread.
  * @param[in] param An optional shared data to pass to the thread
  */
-__api am_thread_handle am_thread_create(am_thread_proc func, am_voidptr param);
+__api am_thread_handle
+am_thread_create(am_thread_proc func, am_voidptr param);
 
 /**
  * @brief Makes the calling thread sleep for the given amount of milliseconds.
  *
  * @param[in] ms The amount of time the calling thread should sleep.
  */
-__api void am_thread_sleep(am_int32 ms);
+__api void
+am_thread_sleep(am_int32 ms);
 
 /**
  * @brief Waits for the given thread to stop.
  *
  * @param[in] thread The handle of the thread to wait.
  */
-__api void am_thread_wait(am_thread_handle thread);
+__api void
+am_thread_wait(am_thread_handle thread);
 
 /**
  * @brief Manually stops a thread execution.
  *
  * @param[in] thread The handle of the thread to wait.
  */
-__api void am_thread_release(am_thread_handle thread);
+__api void
+am_thread_release(am_thread_handle thread);
 
 /**
  * @brief Gets the handle of the calling thread.
  */
-__api am_thread_id am_thread_get_id();
+__api am_thread_id
+am_thread_get_id();
 
 /**
  * @brief Creates a pool task.
@@ -81,7 +86,8 @@ __api am_thread_id am_thread_get_id();
  *
  * @return The handle to the created pool task.
  */
-__api am_thread_pool_task_handle am_thread_pool_task_create(am_thread_pool_task_proc func, am_voidptr param);
+__api am_thread_pool_task_handle
+am_thread_pool_task_create(am_thread_pool_task_proc func, am_voidptr param);
 
 /**
  * @brief Creates a pool task that can be awaited.
@@ -94,7 +100,8 @@ __api am_thread_pool_task_handle am_thread_pool_task_create(am_thread_pool_task_
  *
  * @return The handle to the created pool task.
  */
-__api am_thread_pool_task_awaitable_handle am_thread_pool_task_awaitable_create(am_thread_pool_task_awaitable_proc func, am_voidptr param);
+__api am_thread_pool_task_awaitable_handle
+am_thread_pool_task_awaitable_create(am_thread_pool_task_awaitable_proc func, am_voidptr param);
 
 /**
  * @brief Destroys the pool task with the given handle.
@@ -104,7 +111,8 @@ __api am_thread_pool_task_awaitable_handle am_thread_pool_task_awaitable_create(
  *
  * @param[in] task The handle of the task to destroy.
  */
-__api void am_thread_pool_task_destroy(am_thread_pool_task_handle task);
+__api void
+am_thread_pool_task_destroy(am_thread_pool_task_handle task);
 
 /**
  * @brief Destroys the pool task with the given handle.
@@ -114,7 +122,8 @@ __api void am_thread_pool_task_destroy(am_thread_pool_task_handle task);
  *
  * @param[in] task The handle of the task to destroy.
  */
-__api void am_thread_pool_task_awaitable_destroy(am_thread_pool_task_awaitable_handle task);
+__api void
+am_thread_pool_task_awaitable_destroy(am_thread_pool_task_awaitable_handle task);
 
 /**
  * @brief Checks if the pool task is ready.
@@ -123,7 +132,8 @@ __api void am_thread_pool_task_awaitable_destroy(am_thread_pool_task_awaitable_h
  *
  * @return @c AM_TRUE if the pool task is ready, @c AM_FALSE otherwise.
  */
-__api am_bool am_thread_pool_task_get_ready(am_thread_pool_task_handle task);
+__api am_bool
+am_thread_pool_task_get_ready(am_thread_pool_task_handle task);
 
 /**
  * @brief Checks if the pool task is ready.
@@ -132,7 +142,8 @@ __api am_bool am_thread_pool_task_get_ready(am_thread_pool_task_handle task);
  *
  * @return @c AM_TRUE if the pool task is ready, @c AM_FALSE otherwise.
  */
-__api am_bool am_thread_pool_task_awaitable_get_ready(am_thread_pool_task_awaitable_handle task);
+__api am_bool
+am_thread_pool_task_awaitable_get_ready(am_thread_pool_task_awaitable_handle task);
 
 /**
  * @brief Marks a pool task as ready.
@@ -141,7 +152,8 @@ __api am_bool am_thread_pool_task_awaitable_get_ready(am_thread_pool_task_awaita
  *
  * @param[in] task The handle of the task to mark as ready.
  */
-__api void am_thread_pool_task_set_ready(am_thread_pool_task_handle task);
+__api void
+am_thread_pool_task_set_ready(am_thread_pool_task_handle task);
 
 /**
  * @brief Marks a pool task as ready.
@@ -150,14 +162,16 @@ __api void am_thread_pool_task_set_ready(am_thread_pool_task_handle task);
  *
  * @param[in] task The handle of the task to mark as ready.
  */
-__api void am_thread_pool_task_awaitable_set_ready(am_thread_pool_task_awaitable_handle task);
+__api void
+am_thread_pool_task_awaitable_set_ready(am_thread_pool_task_awaitable_handle task);
 
 /**
  * @brief Makes the calling thread wait for this task to finish.
  *
  * @param[in] task The handle of the task to wait for.
  */
-__api void am_thread_pool_task_awaitable_await(am_thread_pool_task_awaitable_handle task);
+__api void
+am_thread_pool_task_awaitable_await(am_thread_pool_task_awaitable_handle task);
 
 /**
  * @brief Makes the calling thread wait for this task to finish.
@@ -165,7 +179,8 @@ __api void am_thread_pool_task_awaitable_await(am_thread_pool_task_awaitable_han
  * @param[in] task The handle of the task to wait for.
  * @param[in] ms The maximum amount of time to wait in milliseconds.
  */
-__api void am_thread_pool_task_awaitable_await_for(am_thread_pool_task_awaitable_handle task, am_uint64 ms);
+__api void
+am_thread_pool_task_awaitable_await_for(am_thread_pool_task_awaitable_handle task, am_uint64 ms);
 
 /**
  * @brief Creates a new pool tasks scheduler.
@@ -178,14 +193,16 @@ __api void am_thread_pool_task_awaitable_await_for(am_thread_pool_task_awaitable
  *
  * @param[in] thread_count The number of threads to run the pool tasks on.
  */
-__api am_thread_pool_handle am_thread_pool_create(am_uint32 thread_count);
+__api am_thread_pool_handle
+am_thread_pool_create(am_uint32 thread_count);
 
 /**
  * @brief Destroys a pool and release all the associated threads.
  *
  * @param[in] pool The pool to destroy.
  */
-__api void am_thread_pool_destroy(am_thread_pool_handle pool);
+__api void
+am_thread_pool_destroy(am_thread_pool_handle pool);
 
 /**
  * @brief Add a task in the given pool.
@@ -193,7 +210,8 @@ __api void am_thread_pool_destroy(am_thread_pool_handle pool);
  * @param[in] pool The pool in which the task is to be added.
  * @param[in] task The task to add. The task is not automatically deleted when the work is done.
  */
-__api void am_thread_pool_add_task(am_thread_pool_handle pool, am_thread_pool_task_handle task);
+__api void
+am_thread_pool_add_task(am_thread_pool_handle pool, am_thread_pool_task_handle task);
 
 /**
  * @brief Add a task in the given pool.
@@ -201,7 +219,8 @@ __api void am_thread_pool_add_task(am_thread_pool_handle pool, am_thread_pool_ta
  * @param[in] pool The pool in which the task is to be added.
  * @param[in] task The task to add. The task is not automatically deleted when the work is done.
  */
-__api void am_thread_pool_add_task_awaitable(am_thread_pool_handle pool, am_thread_pool_task_awaitable_handle task);
+__api void
+am_thread_pool_add_task_awaitable(am_thread_pool_handle pool, am_thread_pool_task_awaitable_handle task);
 
 /**
  * @brief Gets the number of threads this pool is using.
@@ -210,7 +229,8 @@ __api void am_thread_pool_add_task_awaitable(am_thread_pool_handle pool, am_thre
  *
  * @return The number of threads this pool is using.
  */
-__api am_uint32 am_thread_pool_get_thread_count(am_thread_pool_handle pool);
+__api am_uint32
+am_thread_pool_get_thread_count(am_thread_pool_handle pool);
 
 /**
  * @brief Indicates that the pool is running.
@@ -219,7 +239,8 @@ __api am_uint32 am_thread_pool_get_thread_count(am_thread_pool_handle pool);
  *
  * @return @c AM_TRUE if the pool is running, @c AM_FALSE otherwise.
  */
-__api am_bool am_thread_pool_is_running(am_thread_pool_handle pool);
+__api am_bool
+am_thread_pool_is_running(am_thread_pool_handle pool);
 
 /**
  * @brief Indicates that the pool has tasks pending.
@@ -228,7 +249,8 @@ __api am_bool am_thread_pool_is_running(am_thread_pool_handle pool);
  *
  * @return @c AM_TRUE if the pool is running, @c AM_FALSE otherwise.
  */
-__api am_bool am_thread_pool_has_tasks(am_thread_pool_handle pool);
+__api am_bool
+am_thread_pool_has_tasks(am_thread_pool_handle pool);
 
 #ifdef __cplusplus
 }

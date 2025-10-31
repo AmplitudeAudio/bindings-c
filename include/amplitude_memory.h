@@ -29,7 +29,6 @@ typedef am_memory_pool_stats* am_memory_pool_stats_handle;
  * @brief Available memory pools.
  */
 typedef enum am_memory_pool_kind
-    : am_uint8
 {
     /**
      * @brief Amplitude Engine allocations.
@@ -139,7 +138,8 @@ extern "C" {
  *
  * @return An empty memory manager configuration.
  */
-__api am_memory_allocator_vtable am_memory_allocator_vtable_init();
+__api am_memory_allocator_vtable
+am_memory_allocator_vtable_init();
 
 /**
  * @brief Initializes the memory manager.
@@ -148,19 +148,22 @@ __api am_memory_allocator_vtable am_memory_allocator_vtable_init();
  *
  * @note This should be done prior usage of the memory manager.
  */
-__api void am_memory_manager_initialize(const am_memory_allocator_vtable* config);
+__api void
+am_memory_manager_initialize(const am_memory_allocator_vtable* config);
 
 /**
  * @brief Unloads the memory manager.
  */
-__api void am_memory_manager_deinitialize();
+__api void
+am_memory_manager_deinitialize();
 
 /**
  * @brief Checks whether the memory manager is initialized.
  *
  * @return Whether the memory manager is initialized.
  */
-__api am_bool am_memory_manager_is_initialized();
+__api am_bool
+am_memory_manager_is_initialized();
 
 /**
  * @brief Allocates a block of memory with the given size in the given pool.
@@ -172,7 +175,8 @@ __api am_bool am_memory_manager_is_initialized();
  *
  * @return A pointer to the allocated block.
  */
-__api am_voidptr am_memory_manager_malloc(am_memory_pool_kind pool, am_size size, const char* file, am_uint32 line);
+__api am_voidptr
+am_memory_manager_malloc(am_memory_pool_kind pool, am_size size, const char* file, am_uint32 line);
 
 /**
  * @brief Allocates a block of memory with the given size and the given alignment,
@@ -186,7 +190,8 @@ __api am_voidptr am_memory_manager_malloc(am_memory_pool_kind pool, am_size size
  *
  * @return A pointer to the allocated block.
  */
-__api am_voidptr am_memory_manager_malign(am_memory_pool_kind pool, am_size size, am_uint32 alignment, const char* file, am_uint32 line);
+__api am_voidptr
+am_memory_manager_malign(am_memory_pool_kind pool, am_size size, am_uint32 alignment, const char* file, am_uint32 line);
 
 /**
  * @brief Updates the size of a previously allocated memory.
@@ -199,7 +204,8 @@ __api am_voidptr am_memory_manager_malign(am_memory_pool_kind pool, am_size size
  *
  * @return A pointer to the allocated block. Maybe equal to address if the original pointer had enough memory.
  */
-__api am_voidptr am_memory_manager_realloc(am_memory_pool_kind pool, am_voidptr address, am_size size, const char* file, am_uint32 line);
+__api am_voidptr
+am_memory_manager_realloc(am_memory_pool_kind pool, am_voidptr address, am_size size, const char* file, am_uint32 line);
 
 /**
  * @brief Updates the size of a previously allocated aligned memory.
@@ -213,7 +219,8 @@ __api am_voidptr am_memory_manager_realloc(am_memory_pool_kind pool, am_voidptr 
  *
  * @return A pointer to the allocated block. Maybe equal to address if the original pointer had enough memory.
  */
-__api am_voidptr am_memory_manager_realign(
+__api am_voidptr
+am_memory_manager_realign(
     am_memory_pool_kind pool, am_voidptr address, am_size size, am_uint32 alignment, const char* file, am_uint32 line);
 
 /**
@@ -222,14 +229,16 @@ __api am_voidptr am_memory_manager_realign(
  * @param[in] pool The memory pool to release from.
  * @param[in] address The address of the memory to release.
  */
-__api void am_memory_manager_free(am_memory_pool_kind pool, am_voidptr address);
+__api void
+am_memory_manager_free(am_memory_pool_kind pool, am_voidptr address);
 
 /**
  * @brief Gets the total allocated size.
  *
  * @return The total currently allocated size.
  */
-__api am_size am_memory_manager_total_reserved_memory_size();
+__api am_size
+am_memory_manager_total_reserved_memory_size();
 
 /**
  * @brief Gets the size of the given memory block.
@@ -239,14 +248,16 @@ __api am_size am_memory_manager_total_reserved_memory_size();
  *
  * @return The size of the given memory block.
  */
-__api am_size am_memory_manager_size_of(am_memory_pool_kind pool, const am_voidptr address);
+__api am_size
+am_memory_manager_size_of(am_memory_pool_kind pool, const am_voidptr address);
 
 /**
  * @brief Frees memory for an allocated string.
  *
  * @param[in] str The string to free.
  */
-__api void am_memory_free_str(const char* str);
+__api void
+am_memory_free_str(const char* str);
 
 #ifndef AM_NO_MEMORY_STATS
 /**
@@ -256,14 +267,16 @@ __api void am_memory_free_str(const char* str);
  *
  * @return The name of the memory pool.
  */
-__api const char* am_memory_manager_get_memory_pool_name(am_memory_pool_kind pool);
+__api const char*
+am_memory_manager_get_memory_pool_name(am_memory_pool_kind pool);
 
 /**
  * @brief Returns the memory allocation statistics for the given pool.
  *
  * @param[in] pool The pool to get the statistics for.
  */
-__api am_memory_pool_stats_handle am_memory_manager_get_stats(am_memory_pool_kind pool);
+__api am_memory_pool_stats_handle
+am_memory_manager_get_stats(am_memory_pool_kind pool);
 
 /**
  * @brief Inspect the memory manager for memory leaks.
@@ -273,7 +286,8 @@ __api am_memory_pool_stats_handle am_memory_manager_get_stats(am_memory_pool_kin
  *
  * @return A string containing a report for the detected memory leaks.
  */
-__api const char* am_memory_manager_inspect_memory_leaks();
+__api const char*
+am_memory_manager_inspect_memory_leaks();
 #endif
 
 #ifdef __cplusplus
